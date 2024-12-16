@@ -16,7 +16,7 @@ describe('tarefas', ()=> {
         it('não deve permitir tarefa duplicada', ()=>{
     
             const task = {
-                name : 'Estudar JavaScript',
+                name : 'Estudar Python',
                 is_done : false
             }
     
@@ -33,5 +33,51 @@ describe('tarefas', ()=> {
             cy.isRequired('This is a required field')
     
         })        
+    })
+
+    context('atualização', () => {
+        it('deve concluir uma tarefa', () =>{
+            const task = {
+                name: 'Pagar contas de consumo',
+                is_done: false
+            }
+
+            cy.removeTaskByName(task.name)
+            cy.postTask(task)
+
+            cy.visit(Cypress.env('baseURL'))
+            //  (//p[contains(text(), "Pagar contas de consumo")]/../button)[1]
+            cy.contains('p', task.name)
+                .parent()
+                .find('button[class*=ItemToggle]')
+                .click()
+
+            cy.contains('p', task.name)
+                .should('have.css', 'text-decoration-line', 'line-through')
+
+        })
+    })
+
+    context('exclusão', () => {
+        it('deve remover uma tarefa', () =>{
+            const task = {
+                name: 'Estudar Javascript',
+                is_done: false
+            }
+
+            cy.removeTaskByName(task.name)
+            cy.postTask(task)
+
+            cy.visit(Cypress.env('baseURL'))
+            //  (//p[contains(text(), "Pagar contas de consumo")]/../button)[1]
+            cy.contains('p', task.name)
+                .parent()
+                .find('button[class*=ItemDelete]')
+                .click()
+
+            cy.contains('p', task.name)
+                .should('not.exist')
+
+        })
     })
 })
