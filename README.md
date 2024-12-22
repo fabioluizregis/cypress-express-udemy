@@ -1,46 +1,118 @@
-# cypress-express-udemy
-Exercises I did when learning cypress on udemy
+# Cypress Express Udemy Exercises
 
-[Cypress Express - Udemy](https://www.udemy.com/course/cypress-express/)
+Este repositório contém os exercícios que completei durante o curso Udemy "Cypress Express" ([link para o curso](https://www.udemy.com/course/cypress-express/)).
 
+## Configurando o Projeto
 
-==============
-First of all, we need to start a node project.
-""
-/> npm init
-""
+### 1. Iniciando um projeto Node.js
 
-This will create the file package.json with the initial setup of your project
+Comece criando um novo projeto Node.js usando o npm:
 
-After that, we need to install cypress using the command bellow:
-"""
-/> npm i cypress --save-dev
-"""
+```bash
+npm init
+```
+Este comando gera um arquivo package.json que serve como base para a configuração do seu projeto.
 
-Now, cypress is installed inside the forlder of your project.
+2. Instalando o Cypress
+Instale o Cypress como uma dependência de desenvolvimento usando o npm:
 
-"""
-/> npm uninstall cypress   -- Will remove cypress from your project
-/> npm i cypress@12.2.0 --save-dev   -- Will install the version 12.2.0 of cypress instead of the latest one
-"""
+```bash
+npm install cypress --save-dev
+```
 
-To start cypress, the following commad shall be sent:
-""""
-/> npx cypress open
-""""
+Isso instala o Cypress dentro do diretório do seu projeto.
 
-The LOCAL test environment that can be accessed from a web browser at localhost:3000 address.
+Opções adicionais:
 
-The app folder has the project we are going to test
-inside the app\markL\api folder, to install the packages of the project the command is:
-/> npm install
+Para desinstalar o Cypress, use:
 
-Command to start the api database
-/> npm run db:init
+```bash
+npm uninstall cypress
+```
 
-to start the api, run the command:
-/> npm run dev
+Para instalar uma versão específica do Cypress (por exemplo, versão 12.2.0), use:
 
-Now lets do the same for the app\markL\web project
-/> npm install
-/> npm run dev
+```bash
+npm install cypress@12.2.0 --save-dev
+```
+
+3. Instalando o Allure Reports e o plugin Cypress Allure
+Vamos usar os relatórios Allure para visualização dos resultados dos testes. Instale os pacotes necessários:
+
+```bash
+npm install -D @shelex/cypress-allure-plugin
+npx add allure-commandLine -D
+```
+
+Isso instala o @shelex/cypress-allure-plugin para integração com o Allure e o pacote allure-commandLine para gerenciar os relatórios Allure.
+
+Executando a aplicação e os testes
+
+1. Iniciando o Cypress
+Inicie o executor de testes do Cypress em uma interface gráfica para fácil interação:
+
+```bash
+npx cypress open
+```
+
+2. Executando o ambiente de teste local
+A aplicação sob teste reside na pasta app. Para acessá-la no seu navegador, navegue para http://localhost:3000.
+
+3. Configurando e iniciando o projeto da API
+Navegue para o diretório app/markL/api e instale as dependências do projeto:
+
+```bash
+npm install
+```
+
+Em seguida, inicialize o banco de dados da API (assumindo que você tenha um script de configuração do banco de dados):
+
+```bash
+npm run db:init
+```
+
+Finalmente, inicie o servidor da API:
+
+```bash
+npm run dev
+```
+
+4. Configurando e iniciando o projeto web
+Mova-se para o diretório app/markL/web e instale suas dependências:
+
+```bash
+npm install
+```
+
+Inicie a aplicação web no modo de desenvolvimento:
+
+```bash
+npm run dev
+```
+
+5. Executando os testes do Cypress em modo headless
+Para executar os testes do Cypress em modo headless (sem uma interface do navegador), use:
+
+```bash
+npx cypress run
+```
+
+6. Executando testes em um navegador específico
+Se você preferir executar os testes em um navegador diferente do Electron (o padrão), especifique o nome do navegador:
+
+```bash
+npx cypress run --browser BrowserName
+```
+
+Por exemplo, para executar testes no Chrome:
+
+```bash
+npx cypress run --browser chrome
+```
+
+7. Gerando relatórios Allure
+Execute os testes do Cypress com a variável de ambiente allure=true para gerar relatórios Allure:
+
+```bash
+npx cypress run --env allure=true
+```bash

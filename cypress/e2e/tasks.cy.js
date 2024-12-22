@@ -2,6 +2,14 @@
 
 describe('tarefas', ()=> {
 
+    let testData;
+
+    before( () => {
+        cy.fixture('tasks').then(tasks => {
+            testData = tasks
+        })
+    })
+
     context('cadastro', () => {
         it('deve cadastrar uma nova tarefa', ()=>{
 
@@ -12,13 +20,20 @@ describe('tarefas', ()=> {
     
             cy.contains('main div p' , taskName).should('be.visible')
         })
+
+        it('deve cadastrar uma nova tarefa - negative scenario', ()=>{
+
+            const taskName = 'Ler um livro de node.js'
+    
+            cy.removeTaskByName(taskName)
+            cy.createTask(taskName)
+    
+            cy.contains('main div p' , 'Batatinha quando nasce').should('be.visible')
+        })
     
         it('não deve permitir tarefa duplicada', ()=>{
     
-            const task = {
-                name : 'Estudar Python',
-                is_done : false
-            }
+            const task = testData.dup
     
             cy.removeTaskByName(task.name)
             cy.postTask(task)

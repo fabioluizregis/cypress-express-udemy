@@ -9,6 +9,7 @@
   "author": "fabioluizregis",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.16.1"
+    "@shelex/cypress-allure-plugin": "^2.40.2",
+    "cypress": "^12.5.1"
   }
 }
