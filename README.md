@@ -115,4 +115,4 @@ Execute os testes do Cypress com a variável de ambiente allure=true para gerar 
 
 ```bash
 npx cypress run --env allure=true
-```bash
+```
