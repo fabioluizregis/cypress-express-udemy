@@ -2,6 +2,8 @@
 
 Este repositório contém os exercícios que completei durante o curso Udemy "Cypress Express" ([link para o curso](https://www.udemy.com/course/cypress-express/)).
 
+## Minhas notas durante o estudo...
+
 ## Configurando o Projeto
 
 ### 1. Iniciando um projeto Node.js
